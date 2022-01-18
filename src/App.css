@@ -1,0 +1,18 @@
+@import "~react-toastify/dist/ReactToastify.css";
+
+html,
+body,
+.root {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+}
+
+body,
+.app {
+  background: rgb(216, 208, 208);
+}
+
+/* main page */
