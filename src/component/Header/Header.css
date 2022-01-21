@@ -1,0 +1,43 @@
+nav.br-header {
+  padding: unset;
+  margin: unset;
+  background-color: white;
+  border-bottom: 2px solid #dddd;
+  border-top: 3px solid #dddd;
+}
+
+a.navbar-brand {
+  padding-left: 1rem;
+  background-color: #dddada;
+  padding-right: 1rem;
+  margin-right: unset;
+}
+
+.br-header__logo {
+  width: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.container hr.br-header__line {
+  width: 1px;
+  height: 50px;
+  margin: unset;
+  padding: unset;
+}
+
+.br-header .br-header__btn-login {
+  margin-left: 14px;
+  color: #565656;
+  background-color: #cdcdcd;
+  border-color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+@media screen and (max-width: 991px) {
+  hr.br-header__line {
+    display: none;
+  }
+}
