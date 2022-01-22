@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router";
+import { Link, withRouter } from "react-router-dom";
 
 import { ADMIN } from "../../constant/role";
 
@@ -36,6 +36,7 @@ const Login = (props) => {
   const onChangePassword = (event) => {
     setPassword(event.currentTarget.value);
   };
+
   return (
     <>
       <div className="br-login">
@@ -66,7 +67,7 @@ const Login = (props) => {
             </div>
             <hr />
             <div className="br-login__form-container__footer">
-              <a href="/">Back to Home</a>
+              <Link to="/">Back to Home</Link>
               <Button variant="secondary" type="submit">
                 Sign in
               </Button>
