@@ -3,6 +3,10 @@ const cors = require("cors");
 
 const PORT = 5000;
 const app = express();
+// const { v4: uuidv4 } = require('uuid');
+let bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(cors());
 const corsOptions = {
