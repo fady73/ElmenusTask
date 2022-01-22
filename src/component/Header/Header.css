@@ -17,6 +17,7 @@ a.navbar-brand {
   width: 30px;
   margin-top: 5px;
   margin-bottom: 5px;
+  margin-left: 1rem;
 }
 
 .container hr.br-header__line {

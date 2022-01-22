@@ -14,6 +14,6 @@ const toastConfigObject = {
 toast.configure(toastConfigObject);
 
 const notify = (msg, type = "error") =>
-  (type = ERROR ? toast.error(msg) : toast.success(msg));
+  (type === ERROR ? toast.error(msg) : toast.success(msg));
 
 export default notify;

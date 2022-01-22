@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
-import Login from '../src/component/Login/Login';
+import Login from './component/Login/Login';
+import AdminPanel from './component/AdminPanel/AdminPanel';
 
 import aclMatrix from './constant/aclMatrix';
 
@@ -11,7 +12,7 @@ const routes = [
     path: '/admin-panel',
     exact: true,
     name: 'admin',
-    component:()=><>adminaa</>,
+    component:()=><AdminPanel/>,
     access: [...aclMatrix.ADMIN_ACCESS]
   },
   {
