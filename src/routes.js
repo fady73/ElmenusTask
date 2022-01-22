@@ -1,12 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { retry } from '../src/utils/helper';
+import Login from '../src/component/Login/Login';
 
 import aclMatrix from './constant/aclMatrix';
 
-const Home = React.lazy(() =>
-  retry(() => import('../src/component/Home/Home'))
-);
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -14,14 +11,14 @@ const routes = [
     path: '/admin-panel',
     exact: true,
     name: 'admin',
-    component:Home,
+    component:()=><>adminaa</>,
     access: [...aclMatrix.ADMIN_ACCESS]
   },
   {
     path: '/login',
     exact: true,
     name: 'login',
-    component:()=><></>,
+    component:()=><Login/>,
     access: [...aclMatrix.ALL_ACCESS]
   },
 ];
