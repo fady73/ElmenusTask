@@ -20,21 +20,25 @@ a.navbar-brand {
   margin-left: 1rem;
 }
 
-.container hr.br-header__line {
-  width: 1px;
-  height: 50px;
-  margin: unset;
-  padding: unset;
+.container {
+  hr.br-header__line {
+    width: 1px;
+    height: 50px;
+    margin: unset;
+    padding: unset;
+  }
 }
 
-.br-header .br-header__btn-login {
-  margin-left: 14px;
-  color: #565656;
-  background-color: #cdcdcd;
-  border-color: #ffffff;
-  font-weight: bold;
-  margin-bottom: 6px;
-  margin-top: 6px;
+.br-header {
+  .br-header__btn-login {
+    margin-left: 14px;
+    color: #565656;
+    background-color: #cdcdcd;
+    border-color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 6px;
+  }
 }
 
 @media screen and (max-width: 991px) {

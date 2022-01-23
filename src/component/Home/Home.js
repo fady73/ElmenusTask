@@ -8,7 +8,7 @@ import { Tabs, Tab } from "react-bootstrap";
 import Header from "../Header/Header";
 import MenuItemList from "./MenuItemList/MenusItemList";
 
-import "./Home.css";
+import "./Home.scss";
 
 const Home = (props) => {
   const { getMenus, menusList } = props;
@@ -31,7 +31,7 @@ const Home = (props) => {
               className="mb-3 mt-2 br-home__listing-menu__tabs"
             >
               {menusList.map((item) => (
-                <Tab eventKey={item.name} title={item.name} key={item.id}>
+                <Tab eventKey={item.id} title={item.name} key={item.id}>
                   <MenuItemList items={item.items} />
                 </Tab>
               ))}

@@ -6,7 +6,7 @@ import { ADMIN } from "../../constant/role";
 import { Form, Button } from "react-bootstrap";
 import notify from "../toaster/index";
 
-import "./Login.css";
+import "./Login.scss";
 
 const Login = (props) => {
   const [username, setUsername] = useState(null);

@@ -5,7 +5,7 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 
 import Logo from "../../assets/logo.png";
 
-import "./Header.css";
+import "./Header.scss";
 
 const Header = (props) => {
   const { history } = props;

@@ -1,7 +1,7 @@
 import React, { Fragment} from "react";
 import Items from "../../../assets/items.png";
 
-import "./MenuItemList.css";
+import "./MenuItemList.scss";
 
 const MenuItemList = (props) => {
   const { items } = props;

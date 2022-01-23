@@ -5,7 +5,7 @@ import { addNewCategory } from "../../../action";
 
 import { Form, Button } from "react-bootstrap";
 
-import "./CreateCategory.css";
+import "./CreateCategory.scss";
 import notify from "../../toaster";
 
 const CreateCategory = (props) => {

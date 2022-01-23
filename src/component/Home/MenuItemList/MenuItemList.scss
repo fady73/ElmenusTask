@@ -25,15 +25,17 @@
   text-align: end;
 }
 
-.br-menu-items__price span {
-  color: #565656;
-  background-color: #cdcdcd;
-  border-color: #ffffff;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-  display: inline-block;
-  font-weight: bold;
+.br-menu-items__price {
+  span {
+    color: #565656;
+    background-color: #cdcdcd;
+    border-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+    font-weight: bold;
+  }
 }
 
 @media screen and (max-width: 425px) {

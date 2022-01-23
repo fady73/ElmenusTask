@@ -7,8 +7,7 @@ import routes from "./routes";
 
 import Home from "./component/Home/Home";
 
-import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
+import "./App.scss";
 import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
 
 export default function App() {

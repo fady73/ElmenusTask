@@ -6,7 +6,7 @@ import { Form, Button } from "react-bootstrap";
 import Header from "../Header/Header";
 import CreateCategory from "./CreateCategory/CreateCategory";
 
-import "./AdminPanel.css";
+import "./AdminPanel.scss";
 
 
 const AdminPanel = (props) => {
