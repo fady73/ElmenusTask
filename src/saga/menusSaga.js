@@ -8,7 +8,7 @@ function* fetchAllMenus() {
     const res = yield Menus.getAllMenusData();
     yield put({
       type: actionTypes.GET_ALL_MENUS_RECIVIED,
-      payload: res.categories,
+      payload: res?res.categories:[],
     });
   } catch (err) {
     notify(err.message);
