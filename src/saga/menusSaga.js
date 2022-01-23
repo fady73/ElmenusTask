@@ -1,6 +1,6 @@
 import { put, takeLatest } from "redux-saga/effects";
 import actionTypes from "../action/ActionTypes";
-import * as Menus from "../action/Menus";
+import * as Menus from "../service/Menus";
 import notify from "../component/toaster/index";
 
 function* fetchAllMenus() {
@@ -15,6 +15,8 @@ function* fetchAllMenus() {
   }
 }
 
+
 export default function* menusWatcher() {
   yield takeLatest(actionTypes.GET_ALL_MENUS_REQUEST, fetchAllMenus);
+
 }

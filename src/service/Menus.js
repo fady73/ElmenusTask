@@ -10,3 +10,8 @@ export const getAllMenusData = async () => {
     return null;
   }
 };
+
+
+export const addNewCategory =  (data) => {
+    return http.post("/category",data);
+};

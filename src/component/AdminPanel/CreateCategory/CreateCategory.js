@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addNewCategory } from "../../../action";
+import { getAllMenus } from "../../../action";
+import { addNewCategory } from "../../../service/Menus";
 
 import { Form, Button } from "react-bootstrap";
-
-import "./CreateCategory.scss";
 import notify from "../../toaster";
 
-const CreateCategory = (props) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const{addNewCategories,menusList}=props;
+import "./CreateCategory.scss";
 
-  const onSubmitLogin = (event) => {
+const CreateCategory = (props) => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const { menusList, getMenus } = props;
+
+  const onSubmitLogin = async (event) => {
     event.preventDefault();
-    addNewCategories({name,description})
-    notify('category added','success')
-    setName('');
-    setDescription('')
+    try {
+      await addNewCategory({ name, description });
+      notify("category added", "success");
+      getMenus();
+    } catch (e) {
+      notify(e.message);
+    }
   };
 
   const onChangeName = (event) => {
@@ -73,12 +77,14 @@ const CreateCategory = (props) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addNewCategories: (data) => dispatch(addNewCategory(data)),
+  getMenus: () => dispatch(getAllMenus()),
 });
 
 const mapStateToProps = ({ Menus }) => {
   return { ...Menus };
 };
 
-
-export default connect( mapStateToProps,mapDispatchToProps)(withRouter(CreateCategory));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(CreateCategory));

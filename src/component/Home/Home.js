@@ -17,7 +17,7 @@ const Home = (props) => {
     // for first time call to save it on the store 
     // beacuse we don't use api that save all operation so we must stop calling api when return to here 
     // so we should do this if we  use api to save create and edit and deleted operation we will delete this line
-    if(menusList===null) getMenus();
+    getMenus();
   }, []);
 
   return (

@@ -1,5 +1,4 @@
 import actionTypes from "../action/ActionTypes";
-import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
   menusList: null,
@@ -18,12 +17,6 @@ export default function (state = initialState, action) {
         ...state,
         menusList: null,
       };
-
-      case actionTypes.ADD_NEW_CATEGORY:
-      state.menusList.push({...action.data,id:uuidv4(),items:[]});
-        return {
-          ...state,
-        };
     default:
       return state;
   }

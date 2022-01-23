@@ -3,18 +3,21 @@ const cors = require("cors");
 
 const PORT = 5000;
 const app = express();
-// const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 let bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use(cors());
 const corsOptions = {
   origin: "http://localhost:3000",
 };
 
-const responseData ={
-  "categories": [
+
+
+const menusList ={
+  categories: [
     {
       "id": 80877,
       "name": "Appetizers",
@@ -99,7 +102,33 @@ const responseData ={
 // This function runs if the http://localhost:5000/getData endpoint
 // is requested with a GET request
 app.get("/getData", cors(corsOptions),  (req, res) => {
-    res.json(responseData);
+    res.json(menusList);
+});
+
+
+const ValidateStudent = (catgeory) => {
+	let message = "";
+	if (!catgeory.name) {
+		message = "Category name not found";
+	}
+
+	if (!catgeory.description) {
+		message = "Category description not found";
+	}
+
+	return message;
+};
+
+app.post("/category", (req, res) => {
+	let catgeory = {...req.body,items:[],id:uuidv4()};
+	let isValid = ValidateStudent(catgeory);
+	if (isValid == "") {
+		menusList.categories.push(catgeory);
+		res.status(201).send(catgeory);
+	} else {
+		res.statusMessage = isValid;
+		res.sendStatus(404);
+	}
 });
 
 app.listen(PORT, () => {
