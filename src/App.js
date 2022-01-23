@@ -1,20 +1,20 @@
-import React,{useEffect} from "react";
-import {
-  Route,
-  Switch,
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 import routes from "./routes";
 
 import Home from "./component/Home/Home";
+import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
+import NotFound from "./component/NotFound/NotFound";
 
 import "./App.scss";
-import PrivateRoute from "./component/PrivateRoute/PrivateRoute";
+
 
 export default function App() {
-
   useEffect(() => {
-    const userInfo = localStorage.getItem('userInfo');
-    if(!userInfo){localStorage.setItem('userInfo',"USER")}
+    const userInfo = localStorage.getItem("userInfo");
+    if (!userInfo) {
+      localStorage.setItem("userInfo", "USER");
+    }
   }, []);
 
   return (
@@ -42,6 +42,7 @@ export default function App() {
               />
             ) : null;
           })}
+          <Route path="*" render={() => <NotFound />} />
         </Switch>
       </React.Suspense>
     </div>

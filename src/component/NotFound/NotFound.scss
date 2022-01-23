@@ -1,0 +1,13 @@
+.br-not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.br-not-found__title {
+  font-size: 30px;
+  font-weight: bold;
+  color: #5ac4c4;
+}
