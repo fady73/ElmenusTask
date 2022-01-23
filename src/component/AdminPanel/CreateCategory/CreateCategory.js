@@ -18,6 +18,8 @@ const CreateCategory = (props) => {
     event.preventDefault();
     try {
       await addNewCategory({ name, description });
+      setName('');
+      setDescription('')
       notify("category added", "success");
       getMenus();
     } catch (e) {

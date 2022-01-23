@@ -15,3 +15,8 @@ export const getAllMenusData = async () => {
 export const addNewCategory =  (data) => {
     return http.post("/category",data);
 };
+
+
+export const deleteCategory =  (id) => {
+  return http.delete(`/category/${id}`);
+};

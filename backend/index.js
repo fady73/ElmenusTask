@@ -106,7 +106,7 @@ app.get("/getData", cors(corsOptions),  (req, res) => {
 });
 
 
-const ValidateStudent = (catgeory) => {
+const Validatecatgeory = (catgeory) => {
 	let message = "";
 	if (!catgeory.name) {
 		message = "Category name not found";
@@ -121,12 +121,28 @@ const ValidateStudent = (catgeory) => {
 
 app.post("/category", (req, res) => {
 	let catgeory = {...req.body,items:[],id:uuidv4()};
-	let isValid = ValidateStudent(catgeory);
+	let isValid = Validatecatgeory(catgeory);
 	if (isValid == "") {
 		menusList.categories.push(catgeory);
 		res.status(201).send(catgeory);
 	} else {
 		res.statusMessage = isValid;
+		res.sendStatus(404);
+	}
+});
+
+app.delete("/category/:Id", (req, res) => {
+  console.log(req.params.Id)
+	let catgeoryId = req.params.Id;
+  console.log(menusList)
+
+	let currentcatgeory = menusList.categories.filter((x) => x.id == catgeoryId);
+  console.log(currentcatgeory)
+	if (currentcatgeory) {
+		menusList.categories= menusList.categories.filter((x) => x.id != catgeoryId);
+		res.status(200).send('catgeory deleted sucessfully.');
+	} else {
+		res.statusMessage = "catgeory does not exist";
 		res.sendStatus(404);
 	}
 });
