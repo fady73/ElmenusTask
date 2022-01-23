@@ -1,25 +1,22 @@
 import React from "react";
-import { editCategory, getAllMenus } from "../../../action";
 import { connect } from "react-redux";
 import Accordion from "react-bootstrap/Accordion";
-
-import { deleteCategory } from "../../../service/Menus";
-
-import notify from "../../toaster";
-import ListItem from "./ListItems/ListItem";
-import CreateItem from "./CreateItem/CreateItem";
-
 import { TrashFill, PenFill } from "react-bootstrap-icons";
 
-import "./ListCategory.scss";
+import { editItem, getAllMenus } from "../../../../action";
+import { deleteItem } from "../../../../service/Menus";
 
-const ListCategory = (props) => {
-  const { listItems, getMenus, editAction } = props;
+import notify from "../../../toaster";
+
+import "./ListItem.scss";
+
+const ListItem = (props) => {
+  const { listItems, getMenus, editAction, categoryId } = props;
 
   const handleDeleteAction = async (event, id) => {
     event.stopPropagation();
     try {
-      const res = await deleteCategory(id);
+      const res = await deleteItem(categoryId, id);
       notify(res, "success");
       getMenus();
     } catch (e) {
@@ -30,31 +27,34 @@ const ListCategory = (props) => {
   const handleEditAction = async (event, item) => {
     event.stopPropagation();
     try {
-      editAction(item);
+      editAction({ categoryId, item });
     } catch (e) {
       notify(e.message);
     }
   };
+
   return (
     <>
-      <div className="br-list-categories">
-        <div className="br-list-categories__title">Menu data</div>
-        <Accordion defaultActiveKey="0">
+      <div className="br-list-items">
+        {listItems.length !== 0 && (
+          <div className="br-list-items__title">items</div>
+        )}
+        <Accordion>
           {listItems &&
             listItems.map((item, index) => (
               <Accordion.Item eventKey={`${index}`} key={item.id}>
                 <Accordion.Header>
-                  <div className="br-list-categories__title-container">
+                  <div className="br-list-items__title-container">
                     <div> {item.name}</div>
                     <div>
                       <div
-                        className=" btn btn-success  br-list-categories__title-containers__actions"
+                        className=" btn btn-success  br-list-items__title-containers__actions"
                         variant="success"
                         onClick={(event) => handleEditAction(event, item)}
                       >
                         <PenFill />
                       </div>
-                      <span className="br-list-categories__title-containers__text">
+                      <span className="br-list-items__title-containers__text">
                         or
                       </span>
                       <div
@@ -68,13 +68,15 @@ const ListCategory = (props) => {
                   </div>
                 </Accordion.Header>
                 <Accordion.Body>
-                  <div className="br-list-categories__description-container">
+                  <div className="br-list-items__description-container">
                     <div>Description</div>
                     <div>{item.description || "No Data Available!"}</div>
                   </div>
+                  <div className="br-list-items__description-container">
+                    <div>Price</div>
+                    <div>{item.price} EGP</div>
+                  </div>
                   <hr />
-                  <CreateItem categoryId={item.id} />
-                  <ListItem listItems={item.items} categoryId={item.id} />
                 </Accordion.Body>
               </Accordion.Item>
             ))}
@@ -86,7 +88,7 @@ const ListCategory = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getMenus: () => dispatch(getAllMenus()),
-  editAction: (item) => dispatch(editCategory(item)),
+  editAction: (item) => dispatch(editItem(item)),
 });
 
-export default connect(null, mapDispatchToProps)(ListCategory);
+export default connect(null, mapDispatchToProps)(ListItem);

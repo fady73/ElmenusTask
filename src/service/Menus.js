@@ -11,16 +11,26 @@ export const getAllMenusData = async () => {
   }
 };
 
-
-export const addNewCategory =  (data) => {
-    return http.post("/category",data);
+export const addNewCategory = (data) => {
+  return http.post("/category", data);
 };
 
-
-export const deleteCategory =  (id) => {
+export const deleteCategory = (id) => {
   return http.delete(`/category/${id}`);
 };
 
-export const editCategoryItem =  (item) => {
-  return http.put(`/category/${item.id}`,item);
+export const editCategoryItem = (item) => {
+  return http.put(`/category/${item.id}`, item);
+};
+
+export const addNewItem = (categoryId, data) => {
+  return http.post(`/category/${categoryId}/addItem`, data);
+};
+
+export const deleteItem = (categoryId, id) => {
+  return http.delete(`/category/${categoryId}/${id}`);
+};
+
+export const editItem = (categoryId, item) => {
+  return http.put(`/category/${categoryId}/${item.id}`, item);
 };

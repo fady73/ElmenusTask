@@ -1,7 +1,9 @@
 import React from "react";
-import { Link,withRouter } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { PersonFill } from "react-bootstrap-icons";
+
+import { ADMIN } from "../../constant/role";
 
 import Logo from "../../assets/logo.png";
 
@@ -14,10 +16,10 @@ const Header = (props) => {
       <Navbar className="br-header" expand="lg">
         <Container>
           <hr className="br-header__line" />
-          <Link to="/"> 
-          <Navbar.Brand >
-           <img className="br-header__logo" src={Logo} alt="logo" />
-          </Navbar.Brand>
+          <Link to="/">
+            <Navbar.Brand>
+              <img className="br-header__logo" src={Logo} alt="logo" />
+            </Navbar.Brand>
           </Link>
           <hr className="br-header__line" />
 
@@ -36,6 +38,11 @@ const Header = (props) => {
               >
                 Admin
               </Button>
+              {localStorage.getItem("userInfo") === ADMIN && (
+                <div className="br-header__welcome">
+                  <PersonFill /> <span>Welcome , admin </span>
+                </div>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

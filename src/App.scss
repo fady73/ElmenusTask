@@ -1,11 +1,13 @@
 @import "~react-toastify/scss/main.scss";
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/bootstrap.scss";
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -13,7 +15,7 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 html,
@@ -28,5 +30,9 @@ body,
   background: white;
 }
 
-
-
+.form-control::placeholder,
+.form-control::-ms-input-placeholder,
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #cdcdcd;
+}

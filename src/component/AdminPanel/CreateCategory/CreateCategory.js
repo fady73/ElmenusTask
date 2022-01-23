@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { Form, Button } from "react-bootstrap";
+
 import { clearCategory, getAllMenus } from "../../../action";
 import { addNewCategory, editCategoryItem } from "../../../service/Menus";
 
-import { Form, Button } from "react-bootstrap";
 import notify from "../../toaster";
 
 import "./CreateCategory.scss";
@@ -23,7 +24,7 @@ const CreateCategory = (props) => {
     }
   }, [editCatagory]);
 
-  const onSubmitLogin = async (event) => {
+  const onSubmitCategory = async (event) => {
     event.preventDefault();
     try {
       if (edit) {
@@ -59,11 +60,10 @@ const CreateCategory = (props) => {
     <>
       <div className="br-create-category">
         <div className="br-create-category__title">
-          {" "}
           {edit ? "Edit" : "Add"} Category
         </div>
         <div className="br-create-category__container">
-          <form onSubmit={onSubmitLogin}>
+          <form onSubmit={onSubmitCategory}>
             <div className="br-create-category__container__items">
               <span>
                 Name <span>*</span>

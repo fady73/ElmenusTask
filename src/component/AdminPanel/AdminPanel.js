@@ -1,28 +1,27 @@
 import React, { useEffect } from "react";
-import {  withRouter } from "react-router-dom";
-import { getAllMenus } from "../../action";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { getAllMenus } from "../../action";
 
 import Header from "../Header/Header";
 import CreateCategory from "./CreateCategory/CreateCategory";
-
-import "./AdminPanel.scss";
 import ListCategory from "./ListCategory/ListCategory";
 
+import "./AdminPanel.scss";
 
 const AdminPanel = (props) => {
-  const {getMenus,menusList}=props
+  const { getMenus, menusList } = props;
 
-  useEffect(()=>{
-    getMenus()
-  },[]);
+  useEffect(() => {
+    getMenus();
+  }, []);
 
   return (
     <>
       <Header />
       <div className="br-admin-panel">
-          <CreateCategory />
-          <ListCategory listItems={menusList}/>
+        <CreateCategory />
+        <ListCategory listItems={menusList} />
       </div>
     </>
   );

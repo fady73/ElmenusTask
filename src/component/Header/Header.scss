@@ -41,6 +41,24 @@ a.navbar-brand {
   }
 }
 
+.br-header__welcome {
+  margin: auto;
+  background: gray;
+  border: 1px solid #cdcdcd;
+  border-radius: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.br-header__welcome {
+  span {
+    font-size: 14px;
+  }
+}
+
 @media screen and (max-width: 991px) {
   hr.br-header__line {
     display: none;

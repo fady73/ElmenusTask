@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import { getAllMenus } from "../../action/index";
-
 import { Tabs, Tab } from "react-bootstrap";
+
+import { getAllMenus } from "../../action/index";
 
 import Header from "../Header/Header";
 import MenuItemList from "./MenuItemList/MenusItemList";
@@ -14,9 +14,6 @@ const Home = (props) => {
   const { getMenus, menusList } = props;
 
   useEffect(() => {
-    // for first time call to save it on the store 
-    // beacuse we don't use api that save all operation so we must stop calling api when return to here 
-    // so we should do this if we  use api to save create and edit and deleted operation we will delete this line
     getMenus();
   }, []);
 

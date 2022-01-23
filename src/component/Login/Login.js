@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 
 import { ADMIN } from "../../constant/role";
 
-import { Form, Button } from "react-bootstrap";
 import notify from "../toaster/index";
 
 import "./Login.scss";

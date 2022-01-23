@@ -149,11 +149,8 @@ app.post("/category", (req, res) => {
 });
 
 app.delete("/category/:Id", (req, res) => {
-  console.log(req.params.Id);
   let catgeoryId = req.params.Id;
-
   let currentcatgeory = menusList.categories.filter((x) => x.id == catgeoryId);
-  console.log(currentcatgeory);
   if (currentcatgeory) {
     menusList.categories = menusList.categories.filter(
       (x) => x.id != catgeoryId
@@ -242,7 +239,6 @@ app.put("/category/:Id/:itemId", (req, res) => {
       currentItem.name = editItem.name;
       currentItem.description = editItem.description;
       currentItem.price = editItem.price;
-
       res.status(200).send("item updated sucessfully.");
     } else {
       res.statusMessage = isValid;
