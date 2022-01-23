@@ -1,32 +1,38 @@
-import React, { useEffect } from "react";
-import { getAllMenus } from "../../../action";
+import React from "react";
+import { editCategory, getAllMenus } from "../../../action";
 import { connect } from "react-redux";
 
 import { deleteCategory } from "../../../service/Menus";
 
 import notify from "../../toaster";
 
-import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import { TrashFill, PenFill } from "react-bootstrap-icons";
 
 import "./ListCategory.scss";
 
 const ListCategory = (props) => {
-  const { listItems,getMenus } = props;
+  const { listItems, getMenus, editAction } = props;
 
-  const handleDeleteAction=async(event,id)=>{
-    event.stopPropagation()
-    try{
-     const res= await deleteCategory(id);
-     notify(res,'success');
-     getMenus();
-    }catch(e){
-      notify(e.message)
+  const handleDeleteAction = async (event, id) => {
+    event.stopPropagation();
+    try {
+      const res = await deleteCategory(id);
+      notify(res, "success");
+      getMenus();
+    } catch (e) {
+      notify(e.message);
     }
+  };
 
-  }
-
+  const handleEditAction = async (event, item) => {
+    event.stopPropagation();
+    try {
+      editAction(item);
+    } catch (e) {
+      notify(e.message);
+    }
+  };
   return (
     <>
       <div className="br-list-categories">
@@ -42,6 +48,7 @@ const ListCategory = (props) => {
                       <div
                         className=" btn btn-success  br-list-categories__title-containers__actions"
                         variant="success"
+                        onClick={(event) => handleEditAction(event, item)}
                       >
                         <PenFill />
                       </div>
@@ -51,7 +58,7 @@ const ListCategory = (props) => {
                       <div
                         className="btn btn-danger"
                         variant="success"
-                        onClick={(event)=>  handleDeleteAction(event,item.id)}
+                        onClick={(event) => handleDeleteAction(event, item.id)}
                       >
                         <TrashFill />
                       </div>
@@ -75,7 +82,7 @@ const ListCategory = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getMenus: () => dispatch(getAllMenus()),
+  editAction: (item) => dispatch(editCategory(item)),
 });
 
-
-export default connect(null,mapDispatchToProps)(ListCategory);
+export default connect(null, mapDispatchToProps)(ListCategory);

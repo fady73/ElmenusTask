@@ -106,7 +106,7 @@ app.get("/getData", cors(corsOptions),  (req, res) => {
 });
 
 
-const Validatecatgeory = (catgeory) => {
+const ValidateCatgeory = (catgeory) => {
 	let message = "";
 	if (!catgeory.name) {
 		message = "Category name not found";
@@ -121,7 +121,7 @@ const Validatecatgeory = (catgeory) => {
 
 app.post("/category", (req, res) => {
 	let catgeory = {...req.body,items:[],id:uuidv4()};
-	let isValid = Validatecatgeory(catgeory);
+	let isValid = ValidateCatgeory(catgeory);
 	if (isValid == "") {
 		menusList.categories.push(catgeory);
 		res.status(201).send(catgeory);
@@ -134,13 +134,33 @@ app.post("/category", (req, res) => {
 app.delete("/category/:Id", (req, res) => {
   console.log(req.params.Id)
 	let catgeoryId = req.params.Id;
-  console.log(menusList)
 
 	let currentcatgeory = menusList.categories.filter((x) => x.id == catgeoryId);
   console.log(currentcatgeory)
 	if (currentcatgeory) {
 		menusList.categories= menusList.categories.filter((x) => x.id != catgeoryId);
 		res.status(200).send('catgeory deleted sucessfully.');
+	} else {
+		res.statusMessage = "catgeory does not exist";
+		res.sendStatus(404);
+	}
+});
+
+app.put("/category/:Id", (req, res) => {
+	let catgeoryId = req.params.Id;
+	let catgeory = req.body;
+	let currentcatgeory =  menusList.categories.filter((x) => x.id == catgeoryId)[0];
+	if (currentcatgeory) {
+		let isValid = ValidateCatgeory(catgeory);
+		if (isValid == "") {
+			currentcatgeory.name = catgeory.name;
+			currentcatgeory.description = catgeory.description;
+			currentcatgeory.items = catgeory.items;
+      res.status(200).send('catgeory updated sucessfully.');
+		} else {
+			res.statusMessage = isValid;
+			res.sendStatus(400);
+		}
 	} else {
 		res.statusMessage = "catgeory does not exist";
 		res.sendStatus(404);

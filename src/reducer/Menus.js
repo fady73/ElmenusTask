@@ -2,6 +2,7 @@ import actionTypes from "../action/ActionTypes";
 
 const initialState = {
   menusList: null,
+  editCatagory:null
 };
 
 export default function (state = initialState, action) {
@@ -17,6 +18,17 @@ export default function (state = initialState, action) {
         ...state,
         menusList: null,
       };
+      case actionTypes.GET_EDIT_CATEGORY_REQUEST:
+        return {
+          ...state,
+          editCatagory:null,
+        };
+  
+      case actionTypes.GET_EDIT_CATEGORY_RECIVIED:
+        return {
+          ...state,
+          editCatagory:  action.data,
+        };
     default:
       return state;
   }

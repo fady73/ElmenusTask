@@ -20,3 +20,7 @@ export const addNewCategory =  (data) => {
 export const deleteCategory =  (id) => {
   return http.delete(`/category/${id}`);
 };
+
+export const editCategoryItem =  (item) => {
+  return http.put(`/category/${item.id}`,item);
+};

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { getAllMenus } from "../../../action";
-import { addNewCategory } from "../../../service/Menus";
+import { clearCategory, getAllMenus } from "../../../action";
+import { addNewCategory, editCategoryItem } from "../../../service/Menus";
 
 import { Form, Button } from "react-bootstrap";
 import notify from "../../toaster";
@@ -11,16 +11,36 @@ import "./CreateCategory.scss";
 
 const CreateCategory = (props) => {
   const [name, setName] = useState("");
+  const [edit, setEdit] = useState(false);
   const [description, setDescription] = useState("");
-  const { menusList, getMenus } = props;
+  const { getMenus, editCatagory, clearCategoryRequest } = props;
+
+  useEffect(() => {
+    if (editCatagory != null) {
+      setName(editCatagory.name || "");
+      setEdit(true);
+      setDescription(editCatagory.description || "");
+    }
+  }, [editCatagory]);
 
   const onSubmitLogin = async (event) => {
     event.preventDefault();
     try {
-      await addNewCategory({ name, description });
-      setName('');
-      setDescription('')
-      notify("category added", "success");
+      if (edit) {
+        const response = await editCategoryItem({
+          ...editCatagory,
+          name,
+          description,
+        });
+        notify(response, "success");
+        clearCategoryRequest();
+        setEdit(false);
+      } else {
+        await addNewCategory({ name, description });
+        notify("category added", "success");
+      }
+      setName("");
+      setDescription("");
       getMenus();
     } catch (e) {
       notify(e.message);
@@ -38,7 +58,10 @@ const CreateCategory = (props) => {
   return (
     <>
       <div className="br-create-category">
-        <div className="br-create-category__title">Add Category</div>
+        <div className="br-create-category__title">
+          {" "}
+          {edit ? "Edit" : "Add"} Category
+        </div>
         <div className="br-create-category__container">
           <form onSubmit={onSubmitLogin}>
             <div className="br-create-category__container__items">
@@ -72,7 +95,6 @@ const CreateCategory = (props) => {
             </Button>
           </form>
         </div>
-        {console.log(menusList)}
       </div>
     </>
   );
@@ -80,6 +102,7 @@ const CreateCategory = (props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   getMenus: () => dispatch(getAllMenus()),
+  clearCategoryRequest: () => dispatch(clearCategory()),
 });
 
 const mapStateToProps = ({ Menus }) => {
